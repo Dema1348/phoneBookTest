@@ -6,13 +6,29 @@
 -->
 <ion-header>
 
-  <ion-navbar>
-    <ion-title>Find</ion-title>
+  <ion-navbar color="secondary">
+    <ion-title>
+      <img alt="logo" height="23"   src="assets/imgs/logo.png" > 
+    </ion-title>  
   </ion-navbar>
 
 </ion-header>
 
 
 <ion-content padding>
-
+  <!-- <img src="assets/imgs/cursor.png" > -->
+  <form [formGroup]="findForm" (ngSubmit)="find()">
+    <ion-item >
+      <ion-input autocapitalize="off" autocorrect="off" type="text"  formControlName="nombre" placeholder="Nombre" ></ion-input>
+    </ion-item>
+    
+    
+    <ion-item >
+      <ion-input autocapitalize="off" autocorrect="off" type="apellido"  formControlName="apellido" placeholder="apellido"  ></ion-input>
+    </ion-item>
+    
+    <button ion-button round full   type="submit" [disabled]="!findForm.valid">Buscar</button>
+        
+  </form>
+        
 </ion-content>

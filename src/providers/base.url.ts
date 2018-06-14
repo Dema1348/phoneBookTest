@@ -1,0 +1,1 @@
+export const BASE_URL:string=`http://private-64852-testphonebook.apiary-mock.com/`;
