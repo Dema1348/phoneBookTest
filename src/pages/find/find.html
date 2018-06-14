@@ -8,27 +8,68 @@
 
   <ion-navbar color="secondary">
     <ion-title>
-      <img alt="logo" height="23"   src="assets/imgs/logo.png" > 
+      <img alt="logo" height="40"   src="assets/imgs/logo.png" > 
     </ion-title>  
   </ion-navbar>
 
 </ion-header>
 
 
-<ion-content padding>
+<ion-content padding class="find">
   <!-- <img src="assets/imgs/cursor.png" > -->
-  <form [formGroup]="findForm" (ngSubmit)="find()">
-    <ion-item >
+  <form [formGroup]="findForm" (ngSubmit)="find()" >
+    <ion-item class="cursor-input" >
       <ion-input autocapitalize="off" autocorrect="off" type="text"  formControlName="nombre" placeholder="Nombre" ></ion-input>
     </ion-item>
     
     
-    <ion-item >
-      <ion-input autocapitalize="off" autocorrect="off" type="apellido"  formControlName="apellido" placeholder="apellido"  ></ion-input>
+    <ion-item class="cursor-input" >
+      <ion-input autocapitalize="off" autocorrect="off" type="text"  formControlName="apellido" placeholder="Apellido"  ></ion-input>
     </ion-item>
+    <br> 
     
-    <button ion-button round full   type="submit" [disabled]="!findForm.valid">Buscar</button>
-        
+    <button ion-button round full   type="submit" [disabled]="!findForm.controls.nombre.value && !findForm.controls.apellido.value">Buscar</button>
   </form>
+  <br>
+  <ion-list>
+    <div *ngIf="(personas$ | async) as personas; else loading" >
+      <ion-item-sliding *ngFor="let persona of personas">
+        <ion-item text-wrap  class="item-list">
+          <h2>{{persona.nombre+' '+persona.apellido}}</h2>
+          <h3>RUT {{persona.rut}}</h3>
+          <p >{{persona.direccion?.comuna.nombre+', '+persona.direccion?.calle}}.</p>
+          <ion-note item-end>
+              {{persona.telefono}}
+            </ion-note>
+        </ion-item>
+        <ion-item-options side="left">
+          <button ion-button color="secondary">
+            <ion-icon name="call"></ion-icon>
+            Llamar
+          </button>
+        </ion-item-options>
+        <ion-item-options side="right">
+          <button ion-button color="primary">
+          
+            Detalle
+          </button>
+        </ion-item-options>
+      </ion-item-sliding>
+      <ion-item *ngIf='(personas$| async)?.length === 0' class="item-list">Sin resultados...</ion-item >
+
+    </div>
+      
+
+
+    
+    <ng-template #loading >
+      <div *ngIf="search">
+          <h1 text-center>Buscando usuarios...</h1>
+          <ion-spinner text-center></ion-spinner>
+      </div>
         
+    </ng-template>
+      
+
+  </ion-list>
 </ion-content>

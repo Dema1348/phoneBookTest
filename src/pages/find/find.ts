@@ -7,12 +7,7 @@ import { Persona } from '../../models/persona.model';
 import { PersonasProvider } from '../../providers/personas/personas';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
-/**
- * Generated class for the FindPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+
 
 @IonicPage()
 @Component({
@@ -21,8 +16,9 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 })
 export class FindPage {
   findForm: FormGroup;
-  regiones$: Observable<Region>
-  personas$: Observable<Persona>
+  regiones$: Observable<Region>;
+  personas$: Observable<Persona>;
+  search:Boolean;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private regionesProvider:RegionesProvider, private formBuilder:FormBuilder , private personasProvider:PersonasProvider) {
     this.findForm = formBuilder.group({
@@ -36,12 +32,11 @@ export class FindPage {
         Validators.compose([])
       ]
     });
+    console.log(this.findForm.controls.nombre.value);
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad FindPage');
-    this.getRegiones();
-    this.getPersonas();
   }
 
  
@@ -54,13 +49,12 @@ export class FindPage {
     })
   }
 
-  getPersonas(){
-    this.personas$ = this.personasProvider.getPersonas();
-    this.personas$.subscribe((personas)=>{
-      console.log("Result Personas", personas);
-    },(error)=>{
-      console.error(error);
-    })
+  find(){
+    this.search=true;
+    let filter =(this.findForm.value)
+    this.personas$ = this.personasProvider.getPersonas(filter);
   }
+
+  
 
 }

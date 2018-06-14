@@ -8,4 +8,6 @@ export interface Persona{
     rut: string;
     direccion: Direccion;
     activo: number;
+    _lowernombre?:string;
+    _lowerapellido?:string
 }

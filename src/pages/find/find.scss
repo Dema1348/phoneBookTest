@@ -1,3 +1,29 @@
 page-find {
-
+    .find{
+        background-color:#2d333b; 
+        .cursor-input{
+            background: transparent;
+            border: none;
+            padding-left: 0;
+            ion-input{
+				color: #fff;
+			}
+        }
+        .item-list{
+            background-color: #e6e6e6;
+            color: #343c41;
+        }
+        h1{
+            color:#adc60e;
+        }
+        ion-spinner  {
+            width: 28px;
+            display: block;
+            margin: auto;
+            height: 28px;
+            *{
+                stroke: #adc60e;
+            }
+          }
+    }
 }
