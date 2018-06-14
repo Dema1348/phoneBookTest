@@ -1,6 +1,5 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs/Observable';
 import { BASE_URL } from '../base.url';
 import { Region } from '../../models/region.model';
 import 'rxjs/add/operator/map';
@@ -10,6 +9,7 @@ export class RegionesProvider {
 
   private regionesURL: string = `/region`
 
+  regiones:Region[];
   constructor(public http: HttpClient) {
   
   }
@@ -17,23 +17,16 @@ export class RegionesProvider {
   /**
    * Get all regions of Chile.
    *
-   * @returns {Observable<Region>} Return array of regions from the server.
+   * @returns {Promise<Region>} Return array of regions from the server.
    *
    */
 
-  getRegiones(): Observable<Region> {
+  getRegiones():  Promise<Object> {
     let url = BASE_URL.concat(this.regionesURL);
-    return this.http.get<Region>(url).map((regiones)=>{
-      return this.mappingRegiones(regiones);
-    })
+    return this.http.get<Region>(url).toPromise();
   }
 
-  mappingRegiones(regiones){
-    return regiones.map((region:Region)=>{
-      region._lowernombre=region.nombre.toLowerCase();
-      return region;
-    })
-  }
+
 
   
 }

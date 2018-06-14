@@ -5,15 +5,20 @@ page-find {
             background: transparent;
             border: none;
             padding-left: 0;
-            ion-input{
+            ion-input, ion-select,ion-label{
 				color: #fff;
-			}
+            }
+        }
+        ion-list-header{
+            color: #fff;
+            background-color: transparent;
         }
         .item-list{
             background-color: #e6e6e6;
             color: #343c41;
+           
         }
-        h1{
+        .text-find,.subtitle{
             color:#adc60e;
         }
         ion-spinner  {

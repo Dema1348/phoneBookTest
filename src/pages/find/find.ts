@@ -6,6 +6,7 @@ import { Observable } from 'rxjs/Observable';
 import { Persona } from '../../models/persona.model';
 import { PersonasProvider } from '../../providers/personas/personas';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Comuna } from '../../models/comuna.model';
 
 
 
@@ -16,9 +17,14 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 })
 export class FindPage {
   findForm: FormGroup;
-  regiones$: Observable<Region>;
+  regiones: Region[];
+  comunas: Comuna[];
   personas$: Observable<Persona>;
   search:Boolean;
+  filtro:Boolean;
+  comuna:Comuna;
+  region:Region[];
+
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private regionesProvider:RegionesProvider, private formBuilder:FormBuilder , private personasProvider:PersonasProvider) {
     this.findForm = formBuilder.group({
@@ -37,22 +43,43 @@ export class FindPage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad FindPage');
+    this.getRegiones();
   }
 
  
   getRegiones(){
-    this.regiones$ = this.regionesProvider.getRegiones();
-    this.regiones$.subscribe((regiones)=>{
-      console.log("Result Regiones", regiones);
-    },(error)=>{
-      console.error(error);
-    })
+    this.regionesProvider.getRegiones().then((regiones:Region[])=>{
+      console.log("Regiones",regiones);
+      this.regiones=regiones;
+    });
+   
   }
 
-  find(){
+  find(comunaId?:number){
     this.search=true;
-    let filter =(this.findForm.value)
-    this.personas$ = this.personasProvider.getPersonas(filter);
+    let filter =(this.findForm.value);
+    this.personas$ = this.personasProvider.getPersonas(filter,comunaId);
+  }
+
+  changeRegion(region:Region){
+    this.comunas= region.comunas;
+  }
+
+  changeComuna(comuna:Comuna){
+    if(!comuna)
+      return;  
+    if(this.filtro)
+     this.find(comuna.id);
+
+  }
+
+  updateFilter(){
+      if(!this.comuna)
+        return;  
+      if(this.filtro)
+        this.find(this.comuna.id);
+      else
+      this.find();
   }
 
   

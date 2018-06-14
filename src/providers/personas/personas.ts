@@ -22,12 +22,11 @@ export class PersonasProvider {
    *
    */
 
-  getPersonas(urlParams?:any): Observable<Persona> {
+  getPersonas(urlParams:any,comunaId?:number): Observable<Persona> {
     let url = BASE_URL.concat(this.personasURL);
     return this.http.get<Persona>(url).map((personas)=>{
       return this.mappingPersonas(personas).filter((persona)=>{
-        console.log("Filter ",urlParams);
-        return this.filterQuery(persona,urlParams);
+        return this.filterQuery(persona,urlParams,comunaId);
       });
       
     })
@@ -42,11 +41,19 @@ export class PersonasProvider {
     })
   }
 
-  filterQuery(persona,query){
+  filterQuery(persona,query,comunaId?){
     let lowercaseQueryNombre = query.nombre.toLowerCase();
     let lowercaseQueryApellido = query.apellido.toLowerCase();
-    return (persona._lowernombre.indexOf(lowercaseQueryNombre) === 0) && (persona._lowerapellido.indexOf(lowercaseQueryApellido) === 0);
-  }
+    if(comunaId){
+      console.log("Comunda Id ",comunaId);
+      return (persona.direccion.comuna.id === comunaId) &&  (persona._lowernombre.indexOf(lowercaseQueryNombre) === 0) && (persona._lowerapellido.indexOf(lowercaseQueryApellido) === 0) && (persona.activo === 1);
+
+    }
+    else if ((lowercaseQueryNombre && lowercaseQueryNombre.length>0) ||(lowercaseQueryApellido && lowercaseQueryApellido.length>0))
+      return  (persona._lowernombre.indexOf(lowercaseQueryNombre) === 0) && (persona._lowerapellido.indexOf(lowercaseQueryApellido) === 0) && (persona.activo === 1);
+    else
+      return false;
+    }
 
 
 
