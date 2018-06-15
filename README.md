@@ -34,9 +34,10 @@ Prueba Técnica para cursor basada en [Ionic Framework](http://ionicframework.co
 
 
 ###Screenshots
-| Ios | Android  |
-|---|---|
-| <img alt="Ios" src="https://github.com/Dema1348/phoneBookTest/raw/master/screen-ios-1.jpg" width=300 />| <img alt="android" src="https://github.com/Dema1348/phoneBookTest/raw/master/screen-android-2.png" width=300 /> | 
+#### Ios
+<img alt="Ios" src="https://github.com/Dema1348/phoneBookTest/raw/master/screen-ios-1.png" width=300 />
+#### Android
+<img alt="android" src="https://github.com/Dema1348/phoneBookTest/blob/master/screen-android-1.png" width=300 /> | 
 
 ##Test 
 - Iphone 6s Ios 11.4
