@@ -41,27 +41,12 @@
       <br>
       <ion-list>
          <div *ngIf="(personas$ | async) as personas; else loading" >
-            <ion-item-sliding *ngFor="let persona of personas">
-               <ion-item text-wrap  class="item-list">
+               <ion-item text-wrap  class="item-list" *ngFor="let persona of personas">
                   <h2>{{persona.nombre+' '+persona.apellido}}</h2>
-                  <h3>RUT {{persona.rut}}</h3>
+                  <h3>RUT <span class="rut">{{persona.rut  | rut }}</span></h3>
                   <p >{{persona.direccion?.comuna.nombre+', '+persona.direccion?.calle}}.</p>
-                  <ion-note item-end>
-                     {{persona.telefono}}
-                  </ion-note>
+                  <button ion-button clear item-end color="secondary" (click)="detail(persona)">Ver Detalle</button>
                </ion-item>
-               <ion-item-options side="left">
-                  <button ion-button color="secondary">
-                     <ion-icon name="call"></ion-icon>
-                     Llamar
-                  </button>
-               </ion-item-options>
-               <ion-item-options side="right">
-                  <button ion-button color="primary">
-                  Detalle
-                  </button>
-               </ion-item-options>
-            </ion-item-sliding>
             <ion-item *ngIf='(personas$| async)?.length === 0' class="item-list">Sin resultados...</ion-item >
          </div>
          <ng-template #loading >

@@ -1,3 +1,30 @@
 page-detail {
+    .detail{
+        background-color:#2d333b;   
+        .text-bold{
+            font-weight: bold;
+        }
+        
+        .cursor-input{
+            background: transparent;
+            border: none;
+            padding-left: 0;
+            ion-input, ion-select,ion-label{
+                color: #2d333b;
+                input{
+                    color: #2d333b;
+                    opacity: 1;
+                }
+            }
+           
+            
+        }
+        .invalid {
+            border-bottom: 1px solid #e4503f!important;
+        }
+        .invalid-text{
+            color: #e4503f!important;
+        }
 
+    }
 }

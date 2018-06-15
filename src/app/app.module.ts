@@ -8,6 +8,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { MyApp } from './app.component';
 import { RegionesProvider } from '../providers/regiones/regiones';
 import { PersonasProvider } from '../providers/personas/personas';
+import { HelpersProvider } from '../providers/helpers/helpers';
+
 
 @NgModule({
   declarations: [
@@ -27,7 +29,8 @@ import { PersonasProvider } from '../providers/personas/personas';
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     RegionesProvider,
-    PersonasProvider
+    PersonasProvider,
+    HelpersProvider
   ]
 })
 export class AppModule {}
