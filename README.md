@@ -1,5 +1,4 @@
 # PhoneBook Test
-=====================
 Prueba Técnica para cursor basada en [Ionic Framework](http://ionicframework.com/)
 
 
@@ -36,7 +35,7 @@ Prueba Técnica para cursor basada en [Ionic Framework](http://ionicframework.co
 ###Screenshots
 
 #### Ios
-<img alt="Ios" src="https://github.com/Dema1348/phoneBookTest/raw/master/screen-ios-1.png" width=300 />
+<img alt="Ios" src="https://github.com/Dema1348/phoneBookTest/raw/master/screen-ios.png" width=300 />
 
 #### Android
 <img alt="android" src="https://github.com/Dema1348/phoneBookTest/blob/master/screen-android-1.png" width=300 /> |
