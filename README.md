@@ -34,13 +34,20 @@ Prueba Técnica para cursor basada en [Ionic Framework](http://ionicframework.co
 
 
 ###Screenshots
-![Alt text](screenshot0.png)
-![Alt text](screenshot1.png)
+| Ios | Android  |
+|---|---|
+| <img alt="Ios" src="https://raw.githubusercontent.com/Dema1348/phoneBookTest/master/screen-ios-1.jpg" width=300 />| <img alt="android" src="https://raw.githubusercontent.com/Dema1348/phoneBookTest/master/screen-android-2.png" width=300 /> | 
 
-###Demo
-[Demo apk](https://drive.google.com/file/d/0BwwgQHARYYdiSWNCNnJrRHVtVGM/view?usp=sharing)
+##Test 
+- Iphone 6s Ios 11.4
+- Nexus 5 Android
 
-## Build app
+## Build app Android
 1. npm install
 2. ionic cordova platform add android
 2. ionic cordova platform build android
+
+## Build app Ios
+1. npm install
+2. ionic cordova platform add ios
+2. ionic cordova platform build ios
