@@ -59,7 +59,7 @@ export class DetailPage {
     if(!this.patternPhone.test(this.persona.telefono))
       this.showAlert("Llamar","Número con formato inválido.")
     else{
-      this.callNumber.callNumber(this.persona.telefono, true)
+      this.callNumber.callNumber(this.persona.telefono.toString(), true)
       .then(res => console.log('Call', res))
       .catch(err => {
         this.showAlert("Llamar","Error la iniciar la llamada.")
